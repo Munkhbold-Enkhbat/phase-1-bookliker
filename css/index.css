@@ -2,3 +2,21 @@ body {
 	display: grid;
 	grid-template-columns: 2fr 8fr
 }
+
+.bookli {
+	padding: 5px;
+	color: blue;
+	font-family:Verdana, Geneva, Tahoma, sans-serif;
+	font-weight: bold;
+}
+
+/* .card {
+	text-align: center;
+	margin: 5px 50px;
+	height: auto;
+	width: 20rem;
+}*/
+
+ul {
+	text-align: left;
+} 
