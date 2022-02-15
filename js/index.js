@@ -50,11 +50,11 @@ function renderOneBook(item) {
   const btn = document.createElement('button')
   btn.textContent = 'LIKE'
   btn.addEventListener('click', () => {
-    handleLikeButton(newUser, item, ul)
-    
-    // console.log(item.users);
+    // console.log('newUser1:', newUser);
+    console.log('users:', item.users);
     item.users.push(newUser)
     renderLikedBook(newUser, ul)
+    handleLikeButton(item) 
 
     if (btn.textContent === 'LIKE') {
       btn.textContent = 'UNLIKE'
