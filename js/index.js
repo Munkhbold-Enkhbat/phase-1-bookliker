@@ -12,7 +12,7 @@ let currentUser = {}
 fetch(`http://localhost:3000/users/${userId}`)
 .then(res => res.json())
 .then(data => currentUser = data)
-.then(() => console.log('currentUser @ start:', currentUser))
+.then(() => console.log('currentUser from BE', currentUser))
 /*****************************************************/
 
 function getListOfBooks() {
@@ -20,6 +20,8 @@ function getListOfBooks() {
     .then(res => res.json())
     .then(books => books.forEach(renderOneBook))
 }
+
+// console.log('saved currentUser:', currentUser)
 
 /************* HELPER FUNCTION TO CREATE ELEMENT ***********/
 const makeEl = el => document.createElement(el)
@@ -44,6 +46,7 @@ function renderOneBook(item) {
   const btn = makeEl('button')
 
   img.src = item.img_url
+  ul.id = 'likers-list'
 
 /************** INSERTING TEXTCONTENTS ************/
   setContent(title, item.title)
@@ -54,49 +57,42 @@ function renderOneBook(item) {
 
  /************ Create List of Booklikers onto DOM **************/
   const likers = item.users/////////////////////////////////////////////////////////--->
-  likers.forEach(liker => {
-    const li = makeEl('li')
-    setContent(li, liker.username)
-    li.className = 'reader'
-    ul.appendChild(li)
-  })
+  renderLikersToList(likers, ul)
 
 /********* Get list of the Booklikers from DOM **********/
   const readers = ul.getElementsByClassName('reader') /////////////////////////////---->
 
 /********* Handle LIKE button click ********/
   btn.addEventListener('click', () => {
-
-    // ul.remove()
-    console.log('readers on DOM:', readers)
-    console.log('uls', ul);
-    // debugger
-    // console.log('If user is already there:', users.includes(currentUser));
-    // for(let i = 0; i < readers.length; i++) {
-    //   console.log('Reader:', readers[i]);
-    //   if(readers[i].innerHTML === currentUser.username) {
-    //     removeLikedUser(currentUser, users)
-    //     handleUnLikeButton(currentUser)
-    //   }
-    // }
-    checkAndRemoveLikedUser(likers)
-    console.log('Likers after remove:', likers);
+    console.log('Likers At Open:', likers);
+    // console.log('readers on DOM:', readers)
+    // console.log('uls', ul);
+    
+    // checkAndRemoveLikedUser(likers)
+    // console.log('Likers after remove:', likers);
+    // renderLikersToList(likers, ul)
     
      
     if (btn.textContent === 'LIKE') {
       btn.textContent = 'UNLIKE'
-      item.users.push(currentUser)
+      // likers.push(currentUser)
+      // console.log(currentUser.username)
+      // console.log('Typeof currentUser:', typeof(currentUser))
+      
+      handleLikeButton(likers, currentUser)
+      console.log('Likers after check and push:', likers);
       renderLikedUser(currentUser, ul)
-      handleLikeButton(item) 
+      updateBackEndAfterLikeButton(item, likers) 
     } else {
       btn.textContent = 'LIKE'
-      item.users.pop(currentUser)
-      removeLikedUser(ul)
-      handleUnLikeButton(likers)
+      likers.pop(currentUser)
+      console.log('Likers after pop:', likers);
+      ul.lastChild.remove()
+      handleUnLikeButton(currentUser)
     }
   })
   book.append(img, title, subTitle, author, p, ul, btn)
-////////////////////////////////////////////////////////////////////////////////////
+////////////////////// END OF HIDDEN BOOK DETAILS /////////////////////////////
 
   /********* Event listener for clicking on Book title ********/
   bookli.addEventListener('click', () => {
@@ -113,58 +109,59 @@ function renderOneBook(item) {
 }
 
 /********** Updating Backend Booklikers list *********/
-function handleLikeButton(book) {
+function updateBackEndAfterLikeButton(book, list) {
   fetch(`http://localhost:3000/books/${book.id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(book)
+    body: JSON.stringify(list)
   })
   .then(res => res.json())
   .then(data => console.log('Data from BackEnd:', data))    
 }
 
 /********** Rendering New Liker to a Booklikers' list ********/
-function renderLikedUser(user, list) {
+function renderLikedUser(user, domList) {
   const li = makeEl('li')
   setContent(li, user.username)
-  li.id = user.id  
-  list.appendChild(li)
+  li.className = 'reader'  
+  domList.appendChild(li)
 }
 
-function checkAndRemoveLikedUser(likers) {
-  console.log('userID:', currentUser.id);
-  // likers = likers.filter(liker => {
-  //   console.log('Each Liker ID:', liker.id)
-  //   liker.id !== currentUser.id
-  // })
+// handleLikeButton(likers, currentUser)
+function handleLikeButton(list, user) {
+  console.log("List @start:", list)
+  list.forEach((liker, index) => {    
+    console.log('LikerID:', liker.id);
+    console.log('Liker Index:', index);
+    // console.log('UserID:', user.id);
 
-  likers.forEach((liker, index) => {
-    if(liker.id === currentUser.id) {
-      likers.splice(index, 1)
-    }
+    if(liker.id === user.id) {      
+      list.splice(index, 1)
+    } 
   })
-  // for(let i = 0; i < likers.length; i++) {
-  //   console.log('Reader:', likers[i]);
-  //   if(likers[i].id === userId) {
-  //     // removeLikedUser(currentUser, users)
-  //     likers.querySelector('li').innerText = ''
-      
-  //     // handleUnLikeButton(list)
-  //   } 
-  // }
+  console.log("List @end:", list)
 }
 
 /********** Removing Liker from Backend Bookliker's list ******/
-function handleUnLikeButton(users) {
-  fetch(`http://localhost:3000/users`, {
-    method: 'PATCH',
+// handleUnLikeButton(likers, currentUser)
+function handleUnLikeButton(user) {
+  fetch(`http://localhost:3000/books/${user.id}`, {
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(users)
+    }
   })
   .then(res => res.json())
   .then(data => console.log('Updated Users:', data))
+}
+
+function renderLikersToList(likers, ul) {
+  likers.forEach(liker => {
+    const li = makeEl('li')
+    setContent(li, liker.username)
+    li.className = 'reader'
+    ul.appendChild(li)
+  })
 }

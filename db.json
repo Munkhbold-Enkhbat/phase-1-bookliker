@@ -1,113 +1,34 @@
 {
   "books": [
     {
-      "id": 1,
-      "title": "Grapefruit",
-      "subtitle": "A book of Instruction and Drawings.",
-      "description": "Back in print for the first time in nearly thirty years, here is Yoko Ono's whimsical, delightful, subversive, startling book of instructions for art and for life. 'Burn this book after you've read it.' -- Yoko 'A dream you dream alone may be a dream, but a dream two people dream together is a reality. This is the greatest book I've ever burned.' -- John",
-      "author": "Yoko Ono",
-      "img_url": "https://books.google.com/books/content?id=3S8Rwr-iBdoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "users": [
-        {
-          "id": 2,
-          "username": "auer"
-        },
-        {
-          "id": 8,
-          "username": "maverick"
-        },
-        {
-          "id": 5,
-          "username": "feels-like-summer"
-        },
-        {
-          "id": 5,
-          "username": "feels-like-summer"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 1,
-          "username": "pouros"
-        },
-        {
-          "id": 1,
-          "username": "pouros"
-        }
-      ],
-      "username": "pouros"
-    },
-    {
+      "0": {
+        "id": 10,
+        "username": "macejkovic"
+      },
+      "1": {
+        "id": 4,
+        "username": "ann"
+      },
+      "2": {
+        "id": 6,
+        "username": "steuber"
+      },
+      "3": {
+        "id": 1,
+        "username": "pouros"
+      },
+      "4": {
+        "id": 1,
+        "username": "pouros"
+      },
+      "5": {
+        "id": 1,
+        "username": "pouros"
+      },
+      "6": {
+        "id": 1,
+        "username": "pouros"
+      },
       "id": 2,
       "title": "Invisible Women",
       "subtitle": "AData Bias in a World Designed for Men.",
@@ -130,22 +51,6 @@
         {
           "id": 1,
           "username": "pouros"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
         }
       ]
     },
@@ -168,6 +73,14 @@
       ]
     },
     {
+      "0": {
+        "id": 10,
+        "username": "macejkovic"
+      },
+      "1": {
+        "id": 8,
+        "username": "maverick"
+      },
       "id": 4,
       "title": "Angela Davis",
       "description": "Her own powerful story up to 1972, told with warmth, brilliance, humor and conviction. With an introduction by the author.",
@@ -204,8 +117,7 @@
           "id": 8,
           "username": "maverick"
         }
-      ],
-      "username": "feels-like-summer"
+      ]
     },
     {
       "id": 6,
@@ -240,10 +152,6 @@
         {
           "id": 5,
           "username": "feels-like-summer"
-        },
-        {
-          "id": 5,
-          "username": "feels-like-summer"
         }
       ]
     },
@@ -266,14 +174,22 @@
         {
           "id": 2,
           "username": "auer"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
         }
       ]
     },
     {
+      "0": {
+        "id": 8,
+        "username": "maverick"
+      },
+      "1": {
+        "id": 6,
+        "username": "steuber"
+      },
+      "2": {
+        "id": 5,
+        "username": "feels-like-summer"
+      },
       "id": 9,
       "title": "Parable of the Sower",
       "subtitle": "",
@@ -292,14 +208,18 @@
         {
           "id": 5,
           "username": "feels-like-summer"
-        },
-        {
-          "id": 10,
-          "username": "macejkovic"
         }
       ]
     },
     {
+      "0": {
+        "id": 8,
+        "username": "maverick"
+      },
+      "1": {
+        "id": 10,
+        "username": "macejkovic"
+      },
       "id": 10,
       "title": "An American Marriage",
       "subtitle": "",
